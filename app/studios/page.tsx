@@ -1,5 +1,6 @@
+import StudioSearch from "@/components/studios/studio-search";
 import API_URL from "@/lib/api";
-import { Studio } from "@/types/studio";
+import type { Studio } from "@/types/studio";
 
 async function getStudios(): Promise<Studio[]> {
     try {
@@ -42,32 +43,7 @@ export default async function StudiosPage() {
                 </div>
 
                 <div className="mt-14">
-                    {studios.length > 0 ? (
-                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                            {studios.map((studio) => (
-                                <div
-                                    key={studio._id}
-                                    className="rounded-2xl border border-white/10 bg-white/5 p-6"
-                                >
-                                    <h2 className="text-xl font-semibold text-white">
-                                        {studio.name}
-                                    </h2>
-
-                                    <p className="mt-2 text-sm text-slate-400">
-                                        {studio.location}
-                                    </p>
-
-                                    <p className="mt-4 font-semibold text-emerald-400">
-                                        ৳{studio.price}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <p className="text-center text-sm text-slate-500">
-                            No studios available right now.
-                        </p>
-                    )}
+                    <StudioSearch studios={studios} />
                 </div>
             </section>
         </main>
