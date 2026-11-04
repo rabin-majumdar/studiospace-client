@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -10,22 +11,49 @@ interface StudioSearchProps {
 
 export default function StudioSearch({ studios }: StudioSearchProps) {
     const [searchTerm, setSearchTerm] = useState("");
+    const [sortOrder, setSortOrder] = useState("default");
 
-    const filteredStudios = studios.filter((studio) =>
-        `${studio.name} ${studio.location}`
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()),
-    );
+    const filteredStudios = studios
+        .filter((studio) =>
+            `${studio.name} ${studio.location}`
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase()),
+        )
+        .sort((a, b) => {
+            if (sortOrder === "low-to-high") {
+                return a.price - b.price;
+            }
+
+            if (sortOrder === "high-to-low") {
+                return b.price - a.price;
+            }
+
+            return 0;
+        });
 
     return (
         <div>
-            <div className="mx-auto mb-8 max-w-md">
-                <Input
-                    type="text"
-                    placeholder="Search by studio name or location..."
-                    value={searchTerm}
-                    onChange={(event) => setSearchTerm(event.target.value)}
-                />
+            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="w-full sm:max-w-md">
+                    <Input
+                        type="text"
+                        placeholder="Search by studio name or location..."
+                        value={searchTerm}
+                        onChange={(event) =>
+                            setSearchTerm(event.target.value)
+                        }
+                    />
+                </div>
+
+                <select
+                    value={sortOrder}
+                    onChange={(event) => setSortOrder(event.target.value)}
+                    className="w-full rounded-md border border-white/10 bg-zinc-900 px-3 py-2.5 text-sm text-white outline-none transition-colors focus:border-emerald-400 sm:w-52"
+                >
+                    <option value="default">Default Sorting</option>
+                    <option value="low-to-high">Price: Low to High</option>
+                    <option value="high-to-low">Price: High to Low</option>
+                </select>
             </div>
 
             {filteredStudios.length > 0 ? (
