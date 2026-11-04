@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import type { Studio } from "@/types/studio";
+import Link from "next/link";
 
 interface StudioSearchProps {
     studios: Studio[];
@@ -78,9 +79,10 @@ export default function StudioSearch({ studios }: StudioSearchProps) {
                 <>
                     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {currentStudios.map((studio) => (
-                            <div
+                            <Link
                                 key={studio._id}
-                                className="rounded-2xl border border-white/10 bg-white/5 p-6"
+                                href={`/studios/${studio._id}`}
+                                className="block rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-emerald-400/40 hover:bg-white/10"
                             >
                                 <h2 className="text-xl font-semibold text-white">
                                     {studio.name}
@@ -93,7 +95,7 @@ export default function StudioSearch({ studios }: StudioSearchProps) {
                                 <p className="mt-4 font-semibold text-emerald-400">
                                     ৳{studio.price}
                                 </p>
-                            </div>
+                            </Link>
                         ))}
                     </div>
 
