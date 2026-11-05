@@ -1,86 +1,8 @@
-// import Link from "next/link";
-
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-
-// export default function RegisterPage() {
-//     return (
-//         <main className="flex min-h-screen items-center justify-center bg-slate-950 px-4 py-10">
-//             <div className="w-full max-w-md rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl">
-//                 <h1 className="text-center text-3xl font-bold text-white">
-//                     Create Account
-//                 </h1>
-
-//                 <p className="mt-2 text-center text-sm text-slate-400">
-//                     Join StudioSpace and find your perfect space
-//                 </p>
-
-//                 <form className="mt-8 space-y-5">
-//                     <div className="space-y-2">
-//                         <label htmlFor="name" className="text-sm font-medium text-slate-300">
-//                             Full Name
-//                         </label>
-//                         <Input
-//                             id="name"
-//                             name="name"
-//                             placeholder="Enter your full name"
-//                             required
-//                             autoComplete="name"
-//                         />
-//                     </div>
-
-//                     <div className="space-y-2">
-//                         <label htmlFor="email" className="text-sm font-medium text-slate-300">
-//                             Email Address
-//                         </label>
-//                         <Input
-//                             id="email"
-//                             name="email"
-//                             type="email"
-//                             placeholder="you@example.com"
-//                             required
-//                             autoComplete="email"
-//                         />
-//                     </div>
-
-//                     <div className="space-y-2">
-//                         <label htmlFor="password" className="text-sm font-medium text-slate-300">
-//                             Password
-//                         </label>
-//                         <Input
-//                             id="password"
-//                             name="password"
-//                             type="password"
-//                             placeholder="Create a password"
-//                             required
-//                             autoComplete="new-password"
-//                         />
-//                     </div>
-
-//                     <Button type="submit" className="w-full">
-//                         Create Account
-//                     </Button>
-//                 </form>
-
-//                 <p className="mt-6 text-center text-sm text-slate-400">
-//                     Already have an account?{" "}
-//                     <Link
-//                         href="/login"
-//                         className="font-medium text-emerald-400 hover:text-emerald-300"
-//                     >
-//                         Sign in
-//                     </Link>
-//                 </p>
-//             </div>
-//         </main>
-//     );
-// }
-
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
-import { Eye, EyeOff, Lock, Mail, User, Sparkles, CheckCircle2 } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, User, CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -144,21 +66,14 @@ export default function RegisterPage() {
     };
 
     return (
-        <main className="relative grid min-h-screen overflow-hidden bg-slate-950 lg:grid-cols-2">
+        <main className="relative grid min-h-[calc(100vh-4rem)] overflow-hidden bg-slate-950 lg:grid-cols-2">
             {/* Background glow */}
             <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-emerald-500/20 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
 
             {/* Left: branding (desktop only) */}
-            <section className="relative hidden flex-col justify-between p-12 lg:flex">
-                <div className="flex items-center gap-2 text-xl font-bold text-white">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-br from-emerald-400 to-cyan-500">
-                        <Sparkles className="h-5 w-5 text-slate-950" />
-                    </span>
-                    StudioSpace
-                </div>
-
-                <div>
+            <section className="relative hidden items-center justify-center p-12 lg:flex">
+                <div className="w-full max-w-md">
                     <h2 className="text-4xl font-bold leading-tight text-white">
                         Find the perfect space <br />
                         <span className="bg-linear-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
@@ -174,10 +89,6 @@ export default function RegisterPage() {
                         ))}
                     </ul>
                 </div>
-
-                <p className="text-sm text-slate-500">
-                    © {new Date().getFullYear()} StudioSpace. All rights reserved.
-                </p>
             </section>
 
             {/* Right: form */}
