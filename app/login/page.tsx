@@ -9,6 +9,7 @@ import { Eye, EyeOff, Lock, Mail, CalendarCheck, ShieldCheck, Clock } from "luci
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/components/providers/auth-provider";
 
 const highlights = [
     { icon: CalendarCheck, text: "Pick up right where you left off" },
@@ -23,6 +24,7 @@ export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
 
     const router = useRouter();
+    const { refreshUser } = useAuth();
 
     const [formData, setFormData] = useState({
         email: "",
@@ -48,8 +50,10 @@ export default function LoginPage() {
                 },
             });
 
+            await refreshUser();
+
             router.push("/");
-            router.refresh();
+            
         } catch (error) {
             setError(
                 error instanceof Error
